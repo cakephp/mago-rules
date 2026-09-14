@@ -7,6 +7,7 @@ command = ["php", "vendor/cakephp/mago-rules/bin/mago-cakephp-worker"]
 # Mago owns generic formatting. These settings pin the CakePHP-specific
 # choices that differ from, or are important additions to, PSR-12.
 [formatter]
+excludes = ["**/templates/**"]
 preset = "psr-12"
 print-width = 120
 tab-width = 4
@@ -28,11 +29,15 @@ preserve-breaking-condition-expression = true
 preserve-breaking-binary-expression = true
 first-method-chain-on-new-line = false
 preserve-breaking-member-access-chain = true
+preserve-breaking-member-access-chain-first-method-on-same-line = true
 empty-line-before-return = true
 omit-redundant-arithmetic-binary-expression-parentheses = true
 preserve-redundant-logical-binary-expression-parentheses = true
 separate-use-types = false
 break-promoted-properties-list = false
+
+[linter]
+integrations = ["phpunit"]
 
 # Start from Mago's useful default catalogue while disabling language
 # preferences that conflict with established CakePHP practices.
@@ -47,6 +52,9 @@ no-redundant-parentheses = { enabled = true, level = "error" }
 no-redundant-final = { enabled = true, level = "error" }
 no-redundant-use = { enabled = true, level = "error" }
 no-closing-tag = { enabled = true, level = "error" }
+ambiguous-function-call = { enabled = false }
+no-else-clause = { enabled = false }
+no-shorthand-ternary = { enabled = false }
 
 # CakePHP permits value equality, positional arguments, empty(), and isset().
 identity-comparison = { enabled = false }
