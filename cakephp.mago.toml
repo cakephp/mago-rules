@@ -50,6 +50,7 @@ no-error-control-operator = { enabled = true, level = "error" }
 no-assign-in-condition = { enabled = true, level = "error", ignore-while-statements = false }
 no-redundant-parentheses = { enabled = true, level = "error" }
 no-redundant-final = { enabled = true, level = "error" }
+no-fully-qualified-global-class-like = { enabled = true, level = "error" }
 no-redundant-use = { enabled = true, level = "error" }
 no-closing-tag = { enabled = true, level = "error" }
 ambiguous-function-call = { enabled = false }
