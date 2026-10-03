@@ -68,11 +68,17 @@ cyclomatic-complexity = { enabled = false }
 "mago-cakephp/function-docblock" = { enabled = false }
 ```
 
+Class references must use imports rather than fully qualified names in executable
+code. The native `no-fully-qualified-global-class-like` rule is enabled at error
+severity; `mago lint --fix` adds imports and shortens references. PHPDoc names
+are unaffected.
+
 ## Responsibility map
 
 | Concern | Owner |
 | --- | --- |
 | PSR-12 layout, braces, imports, quotes, commas, casts and return spacing | Mago formatter with CakePHP settings |
+| Imported class references | Native `no-fully-qualified-global-class-like` rule |
 | Short arrays, braced blocks, short tags, silenced errors, assignments in conditions and redundant syntax | Native Mago rules |
 | Conflicting `empty()`/`isset()`/comparison/named-argument preferences | Disabled by the CakePHP preset |
 | Trait `Trait` suffix | `mago-cakephp/trait-suffix` |
