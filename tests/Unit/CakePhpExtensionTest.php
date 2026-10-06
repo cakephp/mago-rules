@@ -13,8 +13,8 @@ final class CakePhpExtensionTest extends TestCase
     {
         $extension = CakePhpExtension::create();
 
-        self::assertSame('mago-cakephp/rules', $extension->identifier);
-        self::assertSame(
+        $this->assertSame('mago-cakephp/rules', $extension->identifier);
+        $this->assertSame(
             [
                 'mago-cakephp/trait-suffix',
                 'mago-cakephp/public-method-underscore',
