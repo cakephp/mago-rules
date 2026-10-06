@@ -93,6 +93,22 @@ Use `@mago-expect lint:<rule-code>` for an intentional local exception, or a
 Mago baseline when migrating an existing project. PHPCS suppression comments
 are not interpreted by this package.
 
+## Analyzer type metadata
+
+The preset includes a Mago source patch that preserves the concrete target table
+for `BelongsTo<T>`, `BelongsToMany<T>`, `HasMany<T>`, and `HasOne<T>` when
+`getTarget()` is called. CakePHP documents each association's target as `T`,
+but the inherited method currently widens its return annotation to `Table`.
+CakePHP source still needs to be available to Mago for type resolution, usually
+through `source.includes = ["vendor"]`. The patch changes analysis metadata
+only; CakePHP runtime behavior is unchanged.
+
+Projects that also use PHPStan need a PHPStan stub or extension for the same
+correction because PHPStan does not consume Mago source patches. Projects with
+an existing local Mago patch for these associations should remove it after
+upgrading to a release that includes this preset patch to avoid duplicate-patch
+conflicts.
+
 ## Relationship to CakePHP CodeSniffer
 
 This is not a PHPCS emulator or a promise of sniff-for-sniff parity. Generic

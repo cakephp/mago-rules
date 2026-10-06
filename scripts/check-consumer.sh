@@ -16,7 +16,10 @@ ln -s "$repo_root" "$consumer_dir/vendor/cakephp/mago-rules"
 mago="$repo_root/vendor/bin/mago"
 "$mago" --workspace "$consumer_dir" extension validate
 "$mago" --workspace "$consumer_dir" format --check
+"$mago" --workspace "$consumer_dir" format --check vendor/cakephp-types.php
+"$mago" --workspace "$repo_root" format --check config/static-analysis/cakephp-associations.php
 "$mago" --workspace "$consumer_dir" lint
+"$mago" --workspace "$consumer_dir" analyze src/AssociationTargetTypes.php --reporting-format short
 
 # The installed preset must reject fully qualified classes without --only or
 # --pedantic, then apply an exact, idempotent native fix. PHPDoc stays unchanged.
