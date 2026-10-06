@@ -1,3 +1,7 @@
+# Correct CakePHP ORM association target types for static analysis.
+[source]
+patches = ["vendor/cakephp/mago-rules/config/static-analysis/cakephp-associations.php"]
+
 # Import this file from a project's mago.toml with:
 # extends = "vendor/cakephp/mago-rules/cakephp.mago.toml"
 
