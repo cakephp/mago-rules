@@ -43,6 +43,13 @@ integrations = ["phpunit"]
 # preferences that conflict with established CakePHP practices.
 # Consuming projects remain free to override any rule.
 [linter.rules]
+assertion-style = { enabled = true, level = "error", style = "this" }
+
+# Framework-facing classes expose actions, finders, helpers, and persisted fields.
+# Keep native size checks active outside these conventional CakePHP paths.
+too-many-methods = { exclude = ["**/src/Controller/**", "**/src/Model/Table/**", "**/src/View/Helper/**"] }
+too-many-properties = { exclude = ["**/src/Model/Entity/**"] }
+
 array-style = { enabled = true, level = "error", style = "short" }
 block-statement = { enabled = true, level = "error" }
 no-short-opening-tag = { enabled = true, level = "error" }

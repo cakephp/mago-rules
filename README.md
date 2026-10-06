@@ -81,6 +81,9 @@ are unaffected.
 | Imported class references | Native `no-fully-qualified-global-class-like` rule |
 | Short arrays, braced blocks, short tags, silenced errors, assignments in conditions and redundant syntax | Native Mago rules |
 | Conflicting `empty()`/`isset()`/comparison/named-argument preferences | Disabled by the CakePHP preset |
+| PHPUnit assertions use `$this->assert…` | Native `assertion-style` rule at error severity |
+| Method counts in controllers, tables, and helpers | Native `too-many-methods`, with conventional CakePHP path exclusions |
+| Declared entity field counts | Native `too-many-properties`, with conventional entity path exclusions |
 | Trait `Trait` suffix | `mago-cakephp/trait-suffix` |
 | Method underscore prefixes, with Entity accessor/mutator exceptions | `mago-cakephp/public-method-underscore` |
 | `elseif` spelling | `mago-cakephp/elseif` |
@@ -92,6 +95,34 @@ are unaffected.
 Use `@mago-expect lint:<rule-code>` for an intentional local exception, or a
 Mago baseline when migrating an existing project. PHPCS suppression comments
 are not interpreted by this package.
+
+## Framework maintainability exceptions
+
+PHPUnit instance test methods use `$this->assert…`; inconsistent styles are
+errors. Mago classifies assertion-style conversions as potentially unsafe, so
+applying these fixes requires `mago lint --fix --potentially-unsafe`. Review the
+result before keeping it.
+
+The preset excludes `**/src/Controller/**`, `**/src/Model/Table/**`, and
+`**/src/View/Helper/**` from the native method-count rule. These classes expose
+framework actions, finders, and helper APIs. It excludes `**/src/Model/Entity/**`
+from the property-count rule because persisted entities can declare many fields,
+including CakePHP 6 property hooks. The property rule counts declared properties;
+PHPDoc association and entity annotations do not contribute to that count.
+
+These are path-based exceptions for conventional application and plugin layouts,
+not inheritance checks. Both native rules keep their default thresholds elsewhere,
+including services. Projects with custom layouts can add their own exclusions.
+
+`no-boolean-flag-parameter` remains enabled. Mago supports file exclusions but
+cannot exempt specific inherited method signatures through configuration. Use a
+local `@mago-expect lint:no-boolean-flag-parameter` for a reported boolean flag
+that a CakePHP hook or overridden API requires. A shared signature-aware exemption
+would need native Mago support; disabling this rule across controllers or tables
+would also hide avoidable flags in application methods.
+
+Complexity thresholds, parameter limits, literal-password policy, and stricter
+`isset()` preferences remain project choices rather than CakePHP conventions.
 
 ## Relationship to CakePHP CodeSniffer
 
