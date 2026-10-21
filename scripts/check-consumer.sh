@@ -47,6 +47,35 @@ if ! grep -q 'error\[assertion-style\]' "$consumer_dir/assertion-style.log"; the
 fi
 rm "$consumer_dir/tests/AssertionStyleTest.php"
 
+# Exercise native convention choices through the installed preset. Include help
+# diagnostics in the failure threshold so default advisory levels are checked.
+policy_codes=(
+    --retain-code function-name
+    --retain-code no-negated-ternary
+    --retain-code no-parameter-shadowing
+    --retain-code no-ini-set
+    --retain-code assert-description
+)
+cp "$repo_root/tests/policy/native-conventions.valid.php" "$consumer_dir/src/NativeConventions.php"
+if ! "$mago" --workspace "$consumer_dir" lint --minimum-fail-level help \
+    "${policy_codes[@]}" src/NativeConventions.php > "$consumer_dir/native-conventions.log" 2>&1; then
+    cat "$consumer_dir/native-conventions.log" >&2
+    exit 1
+fi
+cp "$repo_root/tests/policy/native-conventions.invalid.php" "$consumer_dir/src/NativeConventions.php"
+if "$mago" --workspace "$consumer_dir" lint --minimum-fail-level help --reporting-format short \
+    "${policy_codes[@]}" src/NativeConventions.php > "$consumer_dir/native-conventions.log" 2>&1; then
+    echo "Expected the installed preset to report native convention violations." >&2
+    exit 1
+fi
+for diagnostic in 'help[function-name]' 'help[no-negated-ternary]' 'warning[no-parameter-shadowing]'; do
+    if ! grep -Fq "$diagnostic" "$consumer_dir/native-conventions.log"; then
+        cat "$consumer_dir/native-conventions.log" >&2
+        exit 1
+    fi
+done
+rm "$consumer_dir/src/NativeConventions.php"
+
 # Native count rules remain active for services, while app and plugin framework
 # paths are exempt. Do not use --only: it bypasses the preset's configuration.
 check_count_policy() {
