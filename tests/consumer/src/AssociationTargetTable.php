@@ -1,0 +1,10 @@
+<?php
+declare(strict_types=1);
+
+namespace App;
+
+use Cake\ORM\Table;
+
+final class AssociationTargetTable extends Table
+{
+}

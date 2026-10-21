@@ -4,3 +4,4 @@ extends = "vendor/cakephp/mago-rules/cakephp.mago.toml"
 
 [source]
 paths = ["src", "tests"]
+includes = ["vendor/cakephp-types.php"]

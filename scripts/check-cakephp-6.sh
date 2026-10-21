@@ -75,6 +75,10 @@ config="$repo_root/tests/cakephp6/mago.toml"
 "$repo_root/vendor/bin/mago" --workspace "$checkout_dir" --config "$config" lint --only \
     mago-cakephp/trait-suffix,mago-cakephp/public-method-underscore,mago-cakephp/elseif,mago-cakephp/function-docblock,mago-cakephp/docblock-tag-spacing,mago-cakephp/throws-tag,mago-cakephp/inherit-doc
 
+# Resolve association targets against real CakePHP source without type patches.
+bash "$repo_root/scripts/check-association-types.sh" \
+    --workspace "$checkout_dir" --config "$repo_root/tests/cakephp6/analyzer.toml" --no-extensions
+
 if [[ "$migration_audit" == true ]]; then
     echo "Running the full Mago-first preset; findings represent migration work."
     "$repo_root/vendor/bin/mago" --workspace "$checkout_dir" --config "$repo_root/cakephp.mago.toml" \
