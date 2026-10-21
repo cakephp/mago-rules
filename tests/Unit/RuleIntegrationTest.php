@@ -54,11 +54,11 @@ final class RuleIntegrationTest extends TestCase
             $root,
         );
 
-        self::assertIsResource($process);
+        $this->assertIsResource($process);
         $output = stream_get_contents($pipes[1]) . stream_get_contents($pipes[2]);
         fclose($pipes[1]);
         fclose($pipes[2]);
 
-        self::assertSame(0, proc_close($process), $output);
+        $this->assertSame(0, proc_close($process), $output);
     }
 }

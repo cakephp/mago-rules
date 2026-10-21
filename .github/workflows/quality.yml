@@ -66,15 +66,15 @@ jobs:
 
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.4'
+          php-version: '8.5'
           coverage: none
 
       - name: Cache Composer downloads
         uses: actions/cache@v4
         with:
           path: ~/.cache/composer/files
-          key: composer-${{ runner.os }}-php-8.4-${{ hashFiles('composer.json') }}
-          restore-keys: composer-${{ runner.os }}-php-8.4-
+          key: composer-${{ runner.os }}-php-8.5-${{ hashFiles('composer.json') }}
+          restore-keys: composer-${{ runner.os }}-php-8.5-
 
       - name: Install dependencies
         run: composer update --no-interaction --prefer-dist --prefer-stable

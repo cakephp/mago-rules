@@ -24,6 +24,6 @@ final class PathMatcherTest extends TestCase
     #[DataProvider('paths')]
     public function testMatchesTestPaths(string $path, bool $expected): void
     {
-        self::assertSame($expected, PathMatcher::matches($path, ['tests/**', '**/tests/**']));
+        $this->assertSame($expected, PathMatcher::matches($path, ['tests/**', '**/tests/**']));
     }
 }
