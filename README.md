@@ -43,7 +43,8 @@ Review those changes before keeping them.
 
 ## What the preset includes
 
-The preset starts from Mago's default rules and applies CakePHP formatting and
+Formatting uses Mago's default PER-CS preset with CakePHP overrides.
+The preset starts from Mago's default linter rules and applies CakePHP
 style choices, including short arrays, imported class references, camelCase
 function names, and `$this->assert…` in PHPUnit tests. It also checks for negated
 ternary conditions and parameter shadowing. See [cakephp.mago.toml](cakephp.mago.toml)

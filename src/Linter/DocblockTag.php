@@ -20,6 +20,5 @@ final readonly class DocblockTag
         public string $whitespace,
         public Span $whitespaceSpan,
         public string $value,
-    ) {
-    }
+    ) {}
 }
