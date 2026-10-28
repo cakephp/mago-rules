@@ -5,10 +5,10 @@
 command = ["php", "vendor/cakephp/mago-rules/bin/mago-cakephp-worker"]
 
 # Mago owns generic formatting. These settings pin the CakePHP-specific
-# choices that differ from, or are important additions to, PSR-12.
+# choices that differ from, or are important additions to, PER-CS.
 [formatter]
 excludes = ["**/templates/**"]
-preset = "psr-12"
+preset = "default"
 print-width = 120
 tab-width = 4
 use-tabs = false

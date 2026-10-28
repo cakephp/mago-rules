@@ -6,7 +6,5 @@ namespace App\Test;
 
 final class ExampleTest
 {
-    public function testExample(): void
-    {
-    }
+    public function testExample(): void {}
 }

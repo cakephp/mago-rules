@@ -15,16 +15,12 @@ final class Rules
     /**
      * @inheritDoc
      */
-    public function inherited(): void
-    {
-    }
+    public function inherited(): void {}
 
     /**
      * @inheritDoc
      */
-    public function completelyInherited(): void
-    {
-    }
+    public function completelyInherited(): void {}
 }
 
 if ($first) {

@@ -18,9 +18,7 @@ final class CakePhpExtension
     /**
      * Prevents instantiation of the extension factory.
      */
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     /**
      * Creates the CakePHP rules extension.

@@ -21,8 +21,7 @@ final readonly class Docblock
         public Span $span,
         public string $text,
         public array $tags,
-    ) {
-    }
+    ) {}
 
     /**
      * Finds the docblock immediately preceding a declaration.
